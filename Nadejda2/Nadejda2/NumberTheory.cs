@@ -7,14 +7,34 @@ namespace Nadejda2
     interface IGettable
     {
         int GetValue();
-        string Solution { get; set; }
+        string GetSolution();
     }
+
     public static class NumberTheory
     {
-        private class NOD : IGettable
+
+        public class NOD : IGettable
         {
-            public int Value { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public string Solution { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+            private int a { get; set; }
+            private int b { get; set; }
+            public string GetSolution()
+            {
+                throw new NotImplementedException();
+            }
+
+            public int GetValue()
+            {
+                throw new NotImplementedException();
+            }
+            public NOD(int a, int b)
+            {
+                this.a = a;
+                this.b = b;
+            }
+        }
+        public static NOD GetNod(int a, int b)
+        {
+            return new NOD(a, b);
         }
 
     }
