@@ -36,9 +36,5 @@ namespace Nadejda2
         {
             return new NOD(a, b);
         }
-        public static void Pop()
-        {
-
-        }
     }
 }
