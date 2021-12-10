@@ -9,6 +9,7 @@ namespace Nadejda2
         public App()
         {
             InitializeComponent();
+
             MainPage = new MainPage();
         }
 
