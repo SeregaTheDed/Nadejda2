@@ -24,11 +24,7 @@ namespace Nadejda2
     /// </summary>
     public static class NumberTheoryCheckNums
     {
-        public static bool IsPrime(this int num)
-        {
-            if (num  0)
-            if (num)
-        }
+       
     }
     /// <summary>
     /// A class that is a list of functions in number theory.
