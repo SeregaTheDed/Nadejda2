@@ -14,5 +14,10 @@ namespace Nadejda2
         {
             InitializeComponent();
         }
+
+        private async void Button_Clicked_Main_Continue(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new StartPage());
+        }
     }
 }
