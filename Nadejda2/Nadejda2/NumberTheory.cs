@@ -26,14 +26,20 @@ namespace Nadejda2
     /// </summary>
     public static class NumberTheoryCheckNums 
     {
+        #region Проверка на то, простое ли число <Проверено>
+        /// <summary>
+        /// Checking the number for simplicity
+        /// </summary>
+        /// <param name="num">Number for check</param>  
+        /// <returns>Is it a prime number</returns>
         public static bool IsPrime(this long num)
         {
-            var primes = new long[] {2, 3, 5, 7, 11, 13, 17};
+            var primes = new long[] { 2, 3, 5, 7, 11, 13, 17 };
             if (num <= 17)
                 return primes.Contains(num);
             else
             {
-                for (int i = 2; i < (int)Math.Sqrt(num)+1; i++)
+                for (int i = 2; i < (int)Math.Sqrt(num) + 1; i++)
                 {
                     if (num % i == 0)
                         return false;
@@ -41,10 +47,17 @@ namespace Nadejda2
                 return true;
             }
         }
+        /// <summary>
+        /// Checking the number for simplicity
+        /// </summary>
+        /// <param name="num">Number for check</param>  
+        /// <returns>Is it a prime number</returns>
         public static bool IsPrime(this int num)
         {
             return IsPrime((long)num);
         }
+        #endregion
+
 
     }
     /// <summary>
