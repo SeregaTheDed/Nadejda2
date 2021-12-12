@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace Nadejda2
 {
     public interface IGettable
     {
+
         /// <summary>
         /// Метод получения результата выполнения функции
         /// </summary>
         /// <returns>Целое число - результат работы функции</returns>
-        int GetValue();
+        long GetValue();
         /// <summary>
         /// Метод получения полного решения выполнения функции
         /// </summary>
@@ -22,13 +24,28 @@ namespace Nadejda2
     /// <summary>
     /// A class that expands the possibilities of integers in the field of algebra and number theory
     /// </summary>
-    public static class NumberTheoryCheckNums
+    public static class NumberTheoryCheckNums 
     {
+        public static bool IsPrime(this long num)
+        {
+            var primes = new long[] {2, 3, 5, 7, 11, 13, 17};
+            if (num <= 17)
+                return primes.Contains(num);
+            else
+            {
+                for (int i = 2; i < (int)Math.Sqrt(num)+1; i++)
+                {
+                    if (num % i == 0)
+                        return false;
+                }
+                return true;
+            }
+        }
         public static bool IsPrime(this int num)
         {
-            if (num  0)
-            if (num)
+            return IsPrime((long)num);
         }
+
     }
     /// <summary>
     /// A class that is a list of functions in number theory.
@@ -44,11 +61,11 @@ namespace Nadejda2
             /// <summary>
             /// One of the GCD calculation numbers will be located on the left
             /// </summary>
-            public int A { get; set; }
+            public long A { get; set; }
             /// <summary>
             /// One of the GCD calculation numbers will be located on the right
             /// </summary>
-            public int B { get; set; }
+            public long B { get; set; }
             /// <summary>
             /// StringBuilder which is used to output the result(after converting to String using .ToString())
             /// </summary>
@@ -56,17 +73,17 @@ namespace Nadejda2
             /// <summary>
             /// An integer is the final result of the function execution
             /// </summary>
-            private int result;
+            private long result;
             public string GetSolution()
             {
                 return sb.ToString();
             }
 
-            public int GetValue()
+            public long GetValue()
             {
                 return result;
             }
-            public NOD(int a, int b)
+            public NOD(long a, long b)
             {
                 A = a;
                 B = b;
@@ -99,7 +116,7 @@ namespace Nadejda2
                 result = Math.Max(A, B);
             }
         }
-        public static IGettable GetNod(int a, int b)
+        public static IGettable GetNod(long a, long b)
         {
             return new NOD(a, b);
         }
