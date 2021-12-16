@@ -2,28 +2,38 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 
 namespace Nadejda2
 {
-    public interface IGettable
-    {
+    #region ReadMe
+    /*
+    Readme для DedEgor-creator
+    Смотри только на статические методы у статического класса NumberTheory. 
+    Смотри какие параметры у каждого статического класса, начинающегося с Get. 
+    У каждого класса будет метод GetSolution - он будет возвращать стринг - это тупо все решение
+    тебе больше ничего знать не надо.
 
-        /// <summary>
-        /// Метод получения результата выполнения функции
-        /// </summary>
-        /// <returns>Целое число - результат работы функции</returns>
-        long GetValue();
-        /// <summary>
-        /// Метод получения полного решения выполнения функции
-        /// </summary>
-        /// <returns>Строку, которая представляет из себя полное решение функции, может включать
-        /// символы \n</returns>
+
+
+    Readme для всех остальных.
+    Я в вас верю, вы умные, кароче, по задумке у нас паттерн проектирования завод.
+    Тип у нас есть куча классов, но получать их будет желательно через Get{Name_Of_Class}
+    Позволит если что втыкать заглушки, да и проще фронт с беком совмещать.
+    Для нас:
+    Метод GetValue(при наличии) должен возвращать одно число - решение
+    Метод GetList(при наличии) должен возвращать список - решение
+    Метод GetSolution должен возвращать строку - решение с каждым шагом 
+
+
+    */
+    #endregion
+    interface ISolutable
+    {
         string GetSolution();
     }
-    /// <summary>
-    /// A class that expands the possibilities of integers in the field of algebra and number theory
-    /// </summary>
+
     public static class NumberTheoryCheckNums 
     {
         #region Проверка на то, простое ли число <Проверено>
@@ -69,7 +79,7 @@ namespace Nadejda2
         
 
         #region Вычисление НОД <Проверено>
-        private class NOD : IGettable
+        public class NOD : ISolutable
         {
             /// <summary>
             /// One of the GCD calculation numbers will be located on the left
@@ -96,6 +106,11 @@ namespace Nadejda2
             {
                 return result;
             }
+            /// <summary>
+            /// Calculating GCD
+            /// </summary>
+            /// <param name="a">First num</param>
+            /// <param name="b">Second num</param>
             public NOD(long a, long b)
             {
                 A = a;
@@ -129,15 +144,70 @@ namespace Nadejda2
                 result = Math.Max(A, B);
             }
         }
-        public static IGettable GetNod(long a, long b)
+        public static NOD GetNod(long a, long b)
         {
             return new NOD(a, b);
         }
         #endregion
-        #region Разложение числа на множители !!!нету
+        #region Разложение числа на множители <В разработке>
+        public class MultipliersOfNumber : ISolutable
+        {
+            public long Num { get; set; }
+            /// <summary>
+            /// StringBuilder which is used to output the result(after converting to String using .ToString())
+            /// </summary>
+            private StringBuilder sb = new StringBuilder();
+            /// <summary>
+            /// An list is the final list of the multipliers of a number
+            /// </summary>
+            private List<long> result = new List<long>();
+            private void SolutionThisFunction()
+            {
+                if (Num <= 0)
+                    throw new ArgumentException("Number must be positive value");
+                var CurrentNumber = Num;
+                while (CurrentNumber > 1)
+                {
+                    long division = 2;
+                    if (CurrentNumber.IsPrime())
+                    {
+                        sb.AppendLine($"{CurrentNumber}|{CurrentNumber}");
+                        sb.AppendLine($"1| ");
+                        result.Add(CurrentNumber);
+                        CurrentNumber = 1;
+                    }
+                    else
+                    {
+                        for (; division <= CurrentNumber; division++)
+                        {
+                            if (CurrentNumber % division == 0)
+                                break;
+                        }
+                        sb.AppendLine($"{CurrentNumber}|{division}");
+                        CurrentNumber/=division;
+                        result.Add(division);
+                    }
+                   
+                }
+            }
+            public List<long> GetList() => result;
+            public MultipliersOfNumber(long num)
+            {
+                Num = num;
+                SolutionThisFunction();
+            }
 
+            public string GetSolution()
+            {
+                return sb.ToString();
+            }
+        }
+        public static MultipliersOfNumber GetMultipliersOfNumber(long num)
+        {
+            return new MultipliersOfNumber(num);
+        }
         #endregion
-
+       
 
     }
 }

@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Nadejda2;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace TestMethods
@@ -52,6 +53,23 @@ namespace TestMethods
             {
                 Assert.AreEqual(primes[i], list[i]);
             }
+        }
+    }
+    [TestClass]
+    public class TestMultipliersOfNumber
+    {
+        [TestMethod]
+        public void MyTestMethod()
+        {
+            Random rand = new Random();
+            for (int i = 0; i < 100; i++)
+            {
+                long LastNum = rand.NextInt64(2, long.MaxValue);
+                var GettedDivisions = NumberTheory.GetMultipliersOfNumber(LastNum).GetList();
+                long NewNum = GettedDivisions.Aggregate((x, y) => x*y);
+                Assert.AreEqual(LastNum, NewNum);
+            }
+            
         }
     }
 }
