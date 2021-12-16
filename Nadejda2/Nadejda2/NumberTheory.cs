@@ -207,7 +207,9 @@ namespace Nadejda2
             return new MultipliersOfNumber(num);
         }
         #endregion
-       
+         
+
+
 
     }
 }
