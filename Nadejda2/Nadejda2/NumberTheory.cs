@@ -149,7 +149,7 @@ namespace Nadejda2
             return new NOD(a, b);
         }
         #endregion
-        #region Разложение числа на множители <В разработке>
+        #region Разложение числа на множители <Проверено>
         public class MultipliersOfNumber : ISolutable
         {
             public long Num { get; set; }
