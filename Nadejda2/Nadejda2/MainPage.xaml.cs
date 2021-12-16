@@ -13,11 +13,13 @@ namespace Nadejda2
         public MainPage()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
 
         private async void Button_Clicked_Main_Continue(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new StartPage());
+            await Navigation.PushAsync(new StartPage());
+            Navigation.RemovePage(this);
         }
     }
 }

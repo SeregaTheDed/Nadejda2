@@ -15,6 +15,7 @@ namespace Nadejda2
         public StartPage()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
     }
 }
