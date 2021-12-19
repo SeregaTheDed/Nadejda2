@@ -207,7 +207,7 @@ namespace Nadejda2
             return new MultipliersOfNumber(num);
         }
         #endregion
-         #region Обратный элемент
+        #region Обратный элемент
         public class InverseEl : ISolutable
         {
             public long a;
@@ -313,16 +313,92 @@ namespace Nadejda2
                         }
                         sb.Append("="+forAnsw);
                     }
+                    sb.AppendLine();
+                    inverse = a;
+                    for (int i = 0; i < GetEulerFunc(m).GetValue() - 2; i++)
+                    {
+                        inverse *= a;
+                        inverse %= m;
+                    }
+                    //inverse = (long)Math.Pow(a, GetEulerFunc(m).GetValue() - 1) % m;
+                    sb.AppendLine($"Группируем, коэффициент перед {a} равен {inverse}");
                 }
             }
             public string GetSolution()
             {
                 return sb.ToString();
             }
+            public long GetValue()
+            {
+                return inverse;
+            }
         }
         public static InverseEl GetInverse(long a, long b)
         {
             return new InverseEl(a, b);
+        }
+        #endregion
+        #region Функция Эйлера
+        public class EulerFunc
+        {
+            public long n;
+            private long result;
+            private StringBuilder sb = new StringBuilder();
+            public EulerFunc(long n)
+            {
+                this.n = n;
+                Solution();
+            }
+            private void Solution()
+            {
+                if (n < 1)
+                {
+                    result = 0;
+                    sb.Append("Аргумент функции должен быть больше 0");
+                }
+                else
+                {
+                    var multipliers = GetMultipliersOfNumber(n);
+                    var nums = multipliers.GetList();
+                    sb.Append(multipliers.GetSolution());
+                    sb.Append($"fE({n})=1");
+                    result = 1;
+                    for (int i = 0, count = 0; i < nums.Count; i++)
+                    {
+                        if (i != nums.Count - 1 && nums[i] == nums[i + 1])
+                        {
+                            count++;
+                        }
+                        else
+                        {
+                            if (count == 0)
+                            {
+                                sb.Append($"*fE({nums[i]})={nums[i]-1}");
+                                result *= nums[i] - 1;
+                            }
+                            else
+                            {
+                                count++;
+                                sb.Append($"*fE({nums[i]}^{count})={Math.Pow(nums[i], count)}-{Math.Pow(nums[i], count - 1)}={Math.Pow(nums[i], count)- Math.Pow(nums[i], count-1)}");
+                                result *= (long)(Math.Pow(nums[i], count) - Math.Pow(nums[i], count - 1));
+                                count = 0;
+                            }
+                        }
+                    }
+                }
+            }
+            public string GetSolution()
+            {
+                return sb.ToString();
+            }
+            public long GetValue()
+            {
+                return result;
+            }
+        }
+        public static EulerFunc GetEulerFunc(long n)
+        {
+            return new EulerFunc(n);
         }
         #endregion
     }

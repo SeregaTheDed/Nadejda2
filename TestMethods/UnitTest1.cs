@@ -61,7 +61,7 @@ namespace TestMethods
         [TestMethod]
         public void MyTestMethod()
         {
-            Random rand = new Random();
+            Random rand = new();
             for (int i = 0; i < 100; i++)
             {
                 long LastNum = rand.NextInt64(2, long.MaxValue);
@@ -75,16 +75,38 @@ namespace TestMethods
     public class TestInverse
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestMethod()
         {
-            var num = NumberTheory.GetInverse(17,83).GetSolution();
-            Assert.AreEqual("2", num);
+            var num = NumberTheory.GetInverse(17,83).GetValue();
+            Assert.AreEqual(44, num);
         }
         [TestMethod]
         public void NotPrimeToEachOther()
         {
             var exeption = NumberTheory.GetInverse(34, 111000).GetSolution();
             Assert.AreEqual("Числа 34 и 111000 не взаимно простые => обратного к 34 нет", exeption);
+        }
+    }
+    [TestClass]
+    public class TestEulerFunc
+    {
+        [TestMethod]
+        public void PrimeN()
+        {
+            var num = NumberTheory.GetEulerFunc(23).GetValue();
+            Assert.AreEqual(22, num);
+        }
+        [TestMethod]
+        public void PrimePowN()
+        {
+            var num = NumberTheory.GetEulerFunc(25).GetValue();
+            Assert.AreEqual(20, num);
+        }
+        [TestMethod]
+        public void NotPrimeN()
+        {
+            var num = NumberTheory.GetEulerFunc(150).GetValue();
+            Assert.AreEqual(40, num);
         }
     }
 }
