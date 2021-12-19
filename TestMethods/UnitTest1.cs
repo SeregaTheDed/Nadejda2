@@ -69,7 +69,22 @@ namespace TestMethods
                 long NewNum = GettedDivisions.Aggregate((x, y) => x*y);
                 Assert.AreEqual(LastNum, NewNum);
             }
-            
+        }
+    }
+    [TestClass]
+    public class TestInverse
+    {
+        [TestMethod]
+        public void TestMethod1()
+        {
+            var num = NumberTheory.GetInverse(17,83).GetSolution();
+            Assert.AreEqual("2", num);
+        }
+        [TestMethod]
+        public void NotPrimeToEachOther()
+        {
+            var exeption = NumberTheory.GetInverse(34, 111000).GetSolution();
+            Assert.AreEqual("Числа 34 и 111000 не взаимно простые => обратного к 34 нет", exeption);
         }
     }
 }
