@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nadejda2.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,11 @@ namespace Nadejda2
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
+        }
+
+        private async void Button_Clicked_Nod(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Nod());
         }
     }
 }
