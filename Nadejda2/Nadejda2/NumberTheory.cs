@@ -207,9 +207,123 @@ namespace Nadejda2
             return new MultipliersOfNumber(num);
         }
         #endregion
-         
+         #region Обратный элемент
+        public class InverseEl : ISolutable
+        {
+            public long a;
+            public long m;
+            private StringBuilder sb = new StringBuilder();
+            private long inverse;
 
-
-
+            public InverseEl(long a,long b)
+            {
+                this.a = a;
+                m = b;
+                Solution();
+            }
+            private void Solution()
+            {
+                if (GetNod(a,m).GetValue() != 1)
+                {
+                    sb.Append($"Числа {a} и {m} не взаимно простые => обратного к {a} нет");
+                }
+                else
+                {
+                    List<long> mnoj = new List<long>();
+                    while (true)
+                    {
+                        if (a>m)
+                        {
+                            sb.AppendLine($"{a}={m}*{a / m}+{a % m}");
+                            mnoj.Add(a / m);
+                            if (a % m != 1)
+                                a %= m;
+                            else
+                                break;
+                        }
+                        else
+                        {
+                            sb.AppendLine($"{m}={a}*{m / a}+{m % a}");
+                            mnoj.Add(m / a);
+                            if (m % a != 1)
+                                m %= a;
+                            else
+                                break;
+                        }
+                    }
+                    if (m < a)
+                    {
+                        m += a;
+                        a = m - a;
+                        m -= a;
+                    }
+                    string forAnsw = $"1={m}-{a}*{m / a}";
+                    sb.Append(forAnsw);
+                    forAnsw=forAnsw.Remove(0,2);
+                    bool lamp = true;
+                    for (int i = mnoj.Count - 2; i >= 0; i--)
+                    {
+                        if (lamp)
+                        {
+                            for (int j = 0; j < forAnsw.Length; j++)
+                            {
+                                if ((j==0||forAnsw[j-1] != '*') &&char.IsDigit(forAnsw[j]))
+                                {
+                                    int j1 = j;
+                                    string num = "";
+                                    while (j1 != forAnsw.Length && char.IsDigit(forAnsw[j1]))
+                                    {
+                                        num += forAnsw[j1];
+                                        j1++;
+                                    }
+                                    if (num == a.ToString())
+                                    {
+                                        forAnsw=forAnsw.Remove(j, num.Length);
+                                        forAnsw = forAnsw.Insert(j, $"({a + m * mnoj[i]}-{m}*{mnoj[i]})");
+                                    }
+                                    j = j1;
+                                }
+                            }
+                            lamp = false;
+                            a += m * mnoj[i];
+                        }
+                        else
+                        {
+                            for (int j = 0; j < forAnsw.Length; j++)
+                            {
+                                if ((j == 0 || forAnsw[j - 1] != '*') && char.IsDigit(forAnsw[j]))
+                                {
+                                    int j1 = j;
+                                    string num = "";
+                                    while (j1 != forAnsw.Length && char.IsDigit(forAnsw[j1]))
+                                    {
+                                        num += forAnsw[j1];
+                                        j1++;
+                                    }
+                                    if (num == m.ToString())
+                                    {
+                                        forAnsw = forAnsw.Remove(j, num.Length);
+                                        forAnsw = forAnsw.Insert(j, $"({m + a * mnoj[i]}-{a}*{mnoj[i]})");
+                                    }
+                                    j = j1;
+                                }
+                            }
+                            lamp = true;
+                            m += a * mnoj[i];
+                        }
+                        sb.Append("="+forAnsw);
+                    }
+                }
+            }
+            public string GetSolution()
+            {
+                return sb.ToString();
+            }
+        }
+        public static InverseEl GetInverse(long a, long b)
+        {
+            return new InverseEl(a, b);
+        }
+        #endregion
     }
 }
