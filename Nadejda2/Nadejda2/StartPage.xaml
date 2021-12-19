@@ -3,10 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Nadejda2.StartPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
+        <StackLayout BackgroundColor="#C6FDE2">
+            <Frame BackgroundColor="#EB9FDC" CornerRadius="40" Margin="20">
+                <Label Text="Выберите один из пунктов меню!"
                 VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                HorizontalOptions="CenterAndExpand" FontAttributes="Bold"/>
+            </Frame>
+            <Button Text="НОД" BackgroundColor="#A157F5" CornerRadius="40" Margin="20,5" VerticalOptions="Center" HorizontalOptions="Start" WidthRequest="200"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
