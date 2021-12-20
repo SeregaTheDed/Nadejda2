@@ -35,6 +35,8 @@
                 <Button Grid.Row="0" Grid.Column="0" Clicked="Button_Clicked_Nod" Text="НОД" Margin="10,0,0,0" Style="{StaticResource buttonStyle}"/>
                 <Button Grid.Row="0" Grid.Column="1" Clicked="Button_Clicked_Decomposotion" Text="Разложение числа на множители" Margin="0,0,10,0" Style="{StaticResource buttonStyle}" />
                 <Button Grid.Row="1" Grid.Column="0" Clicked="Button_Clicked_Reverse" Text="Обратный элемент" Margin="10,0,0,0" Style="{StaticResource buttonStyle}" />
+                <Button Grid.Row="1" Grid.Column="1" Clicked="Button_Clicked_EulerFunction" Text="Функция Эйлера" Margin="0,0,10,0" Style="{StaticResource buttonStyle}" />
+                <Button Grid.Row="2" Grid.Column="0" Clicked="Button_Clicked_LegendreSymbol" Text="Символ Лежандра" Margin="10,0,0,0" Style="{StaticResource buttonStyle}" />
             </Grid>
         </StackLayout>
     </ContentPage.Content>
