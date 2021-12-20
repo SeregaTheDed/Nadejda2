@@ -137,4 +137,20 @@ namespace TestMethods
             Assert.AreEqual(-1, num);
         }
     }
+    [TestClass]
+    public class TestLessDegree
+    {
+        [TestMethod]
+        public void WithFerma()
+        {
+            var num = NumberTheory.GetLessDegree(2, 1024,13).GetValue();
+            Assert.AreEqual(4, num);
+        }
+        [TestMethod]
+        public void WithEuler()
+        {
+            var num = NumberTheory.GetLessDegree(13, 1000,100).GetValue();
+            Assert.AreEqual(0, num);
+        }
+    }
 }

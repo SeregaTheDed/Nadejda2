@@ -441,5 +441,51 @@ namespace Nadejda2
             return new LegendreSymbol(a, p);
         }
         #endregion
+        #region Сокращение степени в кольце
+        public class LessDegree : ISolutable
+        {
+            public long a;
+            public long m;
+            public long degree;
+            private StringBuilder sb = new StringBuilder();
+
+            public LessDegree(long a,long m, long degree)
+            {
+                this.a = a;
+                this.m = m;
+                this.degree = degree;
+                Solution();
+            }
+            private void Solution()
+            {
+                var euler = GetEulerFunc(m);
+                sb.AppendLine(euler.GetSolution());
+                long eulerV = euler.GetValue();
+                if (eulerV==m-1)
+                {
+                    sb.AppendLine($"{m}-простое число, применяем малую теорему Ферма:{degree}={eulerV}*{degree/eulerV}+{degree%eulerV}");                 
+                }
+                else
+                {
+                    sb.AppendLine($"{m}-составное число, применяем теорему Эйлера:{degree}={eulerV}*{degree / eulerV}+{degree % eulerV}");                
+                }
+                sb.AppendLine($"Сократили до {a}^{degree % eulerV}");
+                sb.Append($"{a}^{degree}(mod {m})={a}^{degree % eulerV}(mod {m})");
+                degree %= eulerV;
+            }
+            public string GetSolution()
+            {
+                return sb.ToString();
+            }
+            public long GetValue()
+            {
+                return degree;
+            }
+        }
+        public static LessDegree GetLessDegree(long a,long degree,long m)
+        {
+            return new LessDegree(a, m, degree);
+        }
+        #endregion
     }
 }
