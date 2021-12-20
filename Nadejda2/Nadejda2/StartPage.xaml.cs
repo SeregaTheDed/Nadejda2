@@ -43,5 +43,10 @@ namespace Nadejda2
         {
             await Navigation.PushAsync(new LegendreSymbol());
         }
+
+        private async void Button_Clicked_LessDegree(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new LessDegree());
+        }
     }
 }

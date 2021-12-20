@@ -37,6 +37,7 @@
                 <Button Grid.Row="1" Grid.Column="0" Clicked="Button_Clicked_Reverse" Text="Обратный элемент" Margin="10,0,0,0" Style="{StaticResource buttonStyle}" />
                 <Button Grid.Row="1" Grid.Column="1" Clicked="Button_Clicked_EulerFunction" Text="Функция Эйлера" Margin="0,0,10,0" Style="{StaticResource buttonStyle}" />
                 <Button Grid.Row="2" Grid.Column="0" Clicked="Button_Clicked_LegendreSymbol" Text="Символ Лежандра" Margin="10,0,0,0" Style="{StaticResource buttonStyle}" />
+                <Button Grid.Row="2" Grid.Column="1" Clicked="Button_Clicked_LessDegree" Text="Сокращение степени в кольце" Margin="0,0,10,0" Style="{StaticResource buttonStyle}" />
             </Grid>
         </StackLayout>
     </ContentPage.Content>
