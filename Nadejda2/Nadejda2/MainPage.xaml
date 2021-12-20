@@ -15,7 +15,7 @@
         </Frame>
         <Label Text="Данная программа позволит вам решать задачи по 'Теории чисел'." Padding="30,30,30,0" FontSize="Body" VerticalTextAlignment="Start" HorizontalTextAlignment="Center" Grid.Row="1"/>
         <Image Source="main_img" Grid.Row="2" Scale="0.9" VerticalOptions="Start" />
-        <Button Grid.Row="3" Text="Продолжить" Clicked="Button_Clicked_Main_Continue" FontFamily="Custom" FontAttributes="Italic, Bold" WidthRequest="200" HorizontalOptions="Center" VerticalOptions="Center" Padding="20" BackgroundColor="#6D76F0" CornerRadius="30"/>
+        <Button Grid.Row="3" Text="Продолжить" Clicked="Button_Clicked_Main_Continue" FontAttributes="Italic, Bold" WidthRequest="200" HorizontalOptions="Center" VerticalOptions="Center" Padding="20" BackgroundColor="#6D76F0" CornerRadius="30"/>
        
     </Grid>
         
