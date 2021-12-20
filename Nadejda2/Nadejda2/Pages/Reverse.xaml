@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Nadejda2.Pages.Nod">
+             x:Class="Nadejda2.Pages.Reverse">
     <ContentPage.Content>
         <StackLayout BackgroundColor="#F0F785">
             <Frame BackgroundColor="#9790FC" CornerRadius="50" Margin="20">
-                <Label VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="20" FontAttributes="Bold" Text="Введите числа a и b!"/>
+                <Label VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="20" FontAttributes="Bold" Text="Введите число a и кольцо b!"/>
             </Frame>
             <Grid>
                 <Grid.RowDefinitions>
@@ -18,7 +18,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Entry x:Name="number_a" Grid.Row="0"  Margin="20,0,0,0" Grid.Column="0" Placeholder="Число a" WidthRequest="170" HorizontalOptions="Start" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Keyboard="Numeric"/>
-                <Entry x:Name="number_b" Grid.Row="0"  Margin="0,0,20,0" Grid.Column="1" Placeholder="Число b" WidthRequest="170" HorizontalOptions="Start" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Keyboard="Numeric"/>
+                <Entry x:Name="number_b" Grid.Row="0"  Margin="0,0,20,0" Grid.Column="1" Placeholder="Кольцо b" WidthRequest="170" HorizontalOptions="Start" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Keyboard="Numeric"/>
                 <Label Text="С подробным решением" Grid.Row="1" Grid.Column="0" Margin="20,0,0,0" FontSize="20"  VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                 <Switch x:Name="sw" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center"/>
                 <Button Grid.Row="2" Grid.ColumnSpan="2" Clicked="Button_Clicked_Calculate" Text="Посчитать" FontAttributes="Italic, Bold" HeightRequest="60" WidthRequest="200" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="#6D76F0" CornerRadius="30"/>

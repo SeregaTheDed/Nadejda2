@@ -23,5 +23,30 @@ namespace Nadejda2
         {
             await Navigation.PushAsync(new Nod());
         }
+
+        private async void Button_Clicked_Decomposotion(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Decomposition());
+        }
+
+        private async void Button_Clicked_Reverse(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Reverse());
+        }
+
+        private async void Button_Clicked_EulerFunction(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new EulerFunction());
+        }
+
+        private async void Button_Clicked_LegendreSymbol(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new LegendreSymbol());
+        }
+
+        private async void Button_Clicked_LessDegree(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new LessDegree());
+        }
     }
 }
