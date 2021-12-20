@@ -153,4 +153,26 @@ namespace TestMethods
             Assert.AreEqual(0, num);
         }
     }
+    [TestClass]
+    public class TestComparasion
+    {
+        [TestMethod]
+        public void OneSolution()
+        {
+            var num = NumberTheory.GetComparison(13, 2, 4).GetList()[0];
+            Assert.AreEqual(2, num);
+        }
+        [TestMethod]
+        public void NoSolution()
+        {
+            var num = NumberTheory.GetComparison(13, 2, 39).GetList().Count;
+            Assert.AreEqual(0, num);
+        }
+        [TestMethod]
+        public void MoreThanOneSolution()
+        {
+            var num = NumberTheory.GetComparison(420, 462, 511).GetList()[1];
+            Assert.AreEqual(96, num);
+        }
+    }
 }

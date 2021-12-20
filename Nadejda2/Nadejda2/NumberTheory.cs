@@ -229,14 +229,17 @@ namespace Nadejda2
                 }
                 else
                 {
+                    long m1 = m;
+                    long a1 = a;
                     List<long> mnoj = new List<long>();
                     while (true)
                     {
-                        if (a>m)
+
+                        if (a > m)
                         {
                             sb.AppendLine($"{a}={m}*{a / m}+{a % m}");
                             mnoj.Add(a / m);
-                            if (a % m != 1)
+                            if (a % m != 1 && a % m != 0)
                                 a %= m;
                             else
                                 break;
@@ -245,7 +248,7 @@ namespace Nadejda2
                         {
                             sb.AppendLine($"{m}={a}*{m / a}+{m % a}");
                             mnoj.Add(m / a);
-                            if (m % a != 1)
+                            if (m % a != 1 && m % a != 0)
                                 m %= a;
                             else
                                 break;
@@ -314,11 +317,11 @@ namespace Nadejda2
                         sb.Append("="+forAnsw);
                     }
                     sb.AppendLine();
-                    inverse = a;
-                    for (int i = 0; i < GetEulerFunc(m).GetValue() - 2; i++)
+                    inverse = 1;
+                    for (int i = 0; i < GetEulerFunc(m1).GetValue() - 1; i++)
                     {
-                        inverse *= a;
-                        inverse %= m;
+                        inverse *= a1;
+                        inverse %= m1;
                     }
                     //inverse = (long)Math.Pow(a, GetEulerFunc(m).GetValue() - 1) % m;
                     sb.AppendLine($"Группируем, коэффициент перед {a} равен {inverse}");
@@ -485,6 +488,77 @@ namespace Nadejda2
         public static LessDegree GetLessDegree(long a,long degree,long m)
         {
             return new LessDegree(a, m, degree);
+        }
+        #endregion
+        #region Решений сравнений первой степени
+        public class Comparison:ISolutable
+        {
+            public long a;
+            public long b;
+            public long m;
+            private List<long> result;
+            private StringBuilder sb = new StringBuilder();
+
+            public Comparison(long a,long b,long m)
+            {
+                this.a = a;
+                this.b = b;
+                this.m = m;
+                Solution();
+            }
+
+            public void Solution()
+            {
+                var nod = GetNod(a, m);
+                sb.AppendLine(nod.GetSolution());
+                result = new List<long>();
+                if (nod.GetValue()==1)
+                {
+                    sb.AppendLine($"{a} и {m} взаимно простые => система имеет одно решение:");
+                    InverseEl inverse = GetInverse(a,m);
+                    sb.AppendLine(inverse.GetSolution());
+                    result.Add(b * inverse.GetValue() % m);
+                    sb.AppendLine($"x={b}*{inverse.GetValue()}(mod {m})={result[0]}");
+                }
+                else
+                {
+                    if (GetNod(b,nod.GetValue()).GetValue()==1)
+                    {
+                        sb.Append($"Числа {a} и {m} не взаимно простые и {b} не делится на {nod.GetValue()} => решений нет");
+                    }
+                    else if (b>nod.GetValue())
+                    {
+                        sb.AppendLine($"Числа {a} и {m} не взаимно простые, {b} делится на {nod.GetValue()} => сравнение имеет {nod.GetValue()} решений");
+                        sb.AppendLine($"{a}/{nod.GetValue()}=={a/nod.GetValue()}");
+                        a /= nod.GetValue();
+                        sb.AppendLine($"{b}/{nod.GetValue()}=={b / nod.GetValue()}");
+                        b /= nod.GetValue();
+                        sb.AppendLine($"{m}/{nod.GetValue()}=={m / nod.GetValue()}");
+                        m /= nod.GetValue();
+                        InverseEl inverse = GetInverse(a, m);
+                        sb.AppendLine(inverse.GetSolution());
+                        result.Add(b * inverse.GetValue() % m);
+                        sb.AppendLine($"x0={b}*{inverse.GetValue()}={result[0]}");
+                        for(int i=1;i<nod.GetValue();i++)
+                        {
+                            sb.AppendLine($"x{i}={result[i - 1] + m}");
+                            result.Add(result[i - 1] + m);
+                        }
+                    }
+                }
+            }
+            public string GetSolution()
+            {
+                return sb.ToString();
+            }
+            public List<long> GetList()
+            {
+                return result;
+            }
+        }
+        public static Comparison GetComparison(long a, long b, long m)
+        {
+            return new Comparison(a, b, m);
         }
         #endregion
     }
