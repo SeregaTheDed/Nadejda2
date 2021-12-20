@@ -12,20 +12,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="TestMethods\**" />
+    <EmbeddedResource Remove="TestMethods\**" />
+    <None Remove="TestMethods\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Pages\Decomposition.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Pages\Nod.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="StartPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="TestMethods\" />
   </ItemGroup>
 </Project>

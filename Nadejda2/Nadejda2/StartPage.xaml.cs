@@ -23,5 +23,10 @@ namespace Nadejda2
         {
             await Navigation.PushAsync(new Nod());
         }
+
+        private async void Button_Clicked_Decomposotion(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Decomposition());
+        }
     }
 }
