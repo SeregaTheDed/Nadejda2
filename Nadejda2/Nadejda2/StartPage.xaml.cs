@@ -28,5 +28,10 @@ namespace Nadejda2
         {
             await Navigation.PushAsync(new Decomposition());
         }
+
+        private async void Button_Clicked_Reverse(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Reverse());
+        }
     }
 }
