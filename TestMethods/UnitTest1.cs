@@ -108,5 +108,33 @@ namespace TestMethods
             var num = NumberTheory.GetEulerFunc(150).GetValue();
             Assert.AreEqual(40, num);
         }
+        [TestMethod]
+        public void BigNotPrimeN()
+        {
+            var num = NumberTheory.GetEulerFunc(1508834).GetValue();
+            Assert.AreEqual(754416, num);
+        }
+    }
+    [TestClass]
+    public class TestLegendreSymbol
+    {
+        [TestMethod]
+        public void ResultZero()
+        {
+            var num = NumberTheory.GetLegendreSymbol(10,500).GetValue();
+            Assert.AreEqual(0, num);
+        }
+        [TestMethod]
+        public void ResultOne()
+        {
+            var num = NumberTheory.GetLegendreSymbol(10,13).GetValue();
+            Assert.AreEqual(1, num);
+        }
+        [TestMethod]
+        public void ResultMinusOne()
+        {
+            var num = NumberTheory.GetLegendreSymbol(1350,1381).GetValue();
+            Assert.AreEqual(-1, num);
+        }
     }
 }

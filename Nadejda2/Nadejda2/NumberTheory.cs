@@ -339,7 +339,7 @@ namespace Nadejda2
         }
         #endregion
         #region Функция Эйлера
-        public class EulerFunc
+        public class EulerFunc:ISolutable
         {
             public long n;
             private long result;
@@ -399,6 +399,46 @@ namespace Nadejda2
         public static EulerFunc GetEulerFunc(long n)
         {
             return new EulerFunc(n);
+        }
+        #endregion
+        #region Символ Лежандра
+        public class LegendreSymbol:ISolutable
+        {
+            public long a;
+            public long p;
+            private StringBuilder sb=new StringBuilder();
+            private long result;
+            public LegendreSymbol(long a,long p)
+            {
+                this.a = a;
+                this.p = p;
+                Solution();
+            }
+            private void Solution()
+            {
+                sb.Append($"Быстрое решение, критерий Эйлера: ({a}/{p})={a}^(({p}-1)/2) (mod {p})={a}^{(p-1)/2}(mod {p})=");
+                result = a;
+                for(int i=0;i<(p-1)/2-1;i++)
+                {
+                    result *= a;
+                    result %= p;
+                }
+                if (result == p - 1)
+                    result = -1;
+                sb.Append(result);
+            }
+            public string GetSolution()
+            {
+                return sb.ToString();
+            }
+            public long GetValue()
+            {
+                return result;
+            }
+        }
+        public static LegendreSymbol GetLegendreSymbol(long a,long p)
+        {
+            return new LegendreSymbol(a, p);
         }
         #endregion
     }
