@@ -23,9 +23,11 @@
                 <Switch x:Name="sw" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center"/>
                 <Button Grid.Row="2" Grid.ColumnSpan="2" Clicked="Button_Clicked_Calculate" Text="Посчитать" FontAttributes="Italic, Bold" HeightRequest="60" WidthRequest="200" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="#6D76F0" CornerRadius="30"/>
             </Grid>
+            <ScrollView>
             <Frame x:Name="FrameResult" Margin="10,20,10,10" IsVisible="false" Grid.Row="3" Grid.ColumnSpan="2" BackgroundColor="#7DF785" CornerRadius="40" HorizontalOptions="Center" VerticalOptions="Center">
                 <Label x:Name="result" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="20" />
             </Frame>
+                </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
