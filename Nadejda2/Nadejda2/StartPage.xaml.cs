@@ -48,5 +48,10 @@ namespace Nadejda2
         {
             await Navigation.PushAsync(new LessDegree());
         }
+
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ComporasionFirstStage());
+        }
     }
 }

@@ -66,7 +66,7 @@ namespace TestMethods
             {
                 long LastNum = rand.NextInt64(2, long.MaxValue);
                 var GettedDivisions = NumberTheory.GetMultipliersOfNumber(LastNum).GetList();
-                long NewNum = GettedDivisions.Aggregate((x, y) => x*y);
+                long NewNum = GettedDivisions.Aggregate((x, y) => x * y);
                 Assert.AreEqual(LastNum, NewNum);
             }
         }
@@ -77,7 +77,7 @@ namespace TestMethods
         [TestMethod]
         public void TestMethod()
         {
-            var num = NumberTheory.GetInverse(63,5).GetValue();
+            var num = NumberTheory.GetInverse(63, 5).GetValue();
             Assert.AreEqual(2, num);
         }
         [TestMethod]
@@ -121,19 +121,19 @@ namespace TestMethods
         [TestMethod]
         public void ResultZero()
         {
-            var num = NumberTheory.GetLegendreSymbol(10,500).GetValue();
+            var num = NumberTheory.GetLegendreSymbol(10, 500).GetValue();
             Assert.AreEqual(0, num);
         }
         [TestMethod]
         public void ResultOne()
         {
-            var num = NumberTheory.GetLegendreSymbol(10,13).GetValue();
+            var num = NumberTheory.GetLegendreSymbol(10, 13).GetValue();
             Assert.AreEqual(1, num);
         }
         [TestMethod]
         public void ResultMinusOne()
         {
-            var num = NumberTheory.GetLegendreSymbol(1350,1381).GetValue();
+            var num = NumberTheory.GetLegendreSymbol(1350, 1381).GetValue();
             Assert.AreEqual(-1, num);
         }
     }
@@ -143,13 +143,13 @@ namespace TestMethods
         [TestMethod]
         public void WithFerma()
         {
-            var num = NumberTheory.GetLessDegree(2, 1024,13).GetValue();
+            var num = NumberTheory.GetLessDegree(2, 1024, 13).GetValue();
             Assert.AreEqual(4, num);
         }
         [TestMethod]
         public void WithEuler()
         {
-            var num = NumberTheory.GetLessDegree(13, 1000,100).GetValue();
+            var num = NumberTheory.GetLessDegree(13, 1000, 100).GetValue();
             Assert.AreEqual(0, num);
         }
     }
@@ -173,6 +173,22 @@ namespace TestMethods
         {
             var num = NumberTheory.GetComparison(420, 462, 511).GetList()[1];
             Assert.AreEqual(96, num);
+        }
+        [TestClass]
+        public class TestElOrder
+        {
+            [TestMethod]
+            public void SomeValues()
+            {
+                var num = NumberTheory.GetElOrder(7,25).GetValue();
+                Assert.AreEqual(4, num);
+            }
+            [TestMethod]
+            public void SomeValues1()
+            {
+                var num = NumberTheory.GetElOrder(5, 73).GetValue();
+                Assert.AreEqual(72, num);
+            }
         }
     }
 }
