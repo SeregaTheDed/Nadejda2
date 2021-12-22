@@ -77,8 +77,8 @@ namespace TestMethods
         [TestMethod]
         public void TestMethod()
         {
-            var num = NumberTheory.GetInverse(17,83).GetValue();
-            Assert.AreEqual(44, num);
+            var num = NumberTheory.GetInverse(63,5).GetValue();
+            Assert.AreEqual(2, num);
         }
         [TestMethod]
         public void NotPrimeToEachOther()

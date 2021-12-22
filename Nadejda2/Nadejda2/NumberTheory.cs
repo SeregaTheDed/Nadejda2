@@ -284,7 +284,8 @@ namespace Nadejda2
                                         forAnsw=forAnsw.Remove(j, num.Length);
                                         forAnsw = forAnsw.Insert(j, $"({a + m * mnoj[i]}-{m}*{mnoj[i]})");
                                     }
-                                    j = j1;
+                                    int leng = $"({m + a * mnoj[i]}-{a}*{mnoj[i]})".Length - num.Length;
+                                    j += leng - 1;
                                 }
                             }
                             lamp = false;
@@ -308,7 +309,8 @@ namespace Nadejda2
                                         forAnsw = forAnsw.Remove(j, num.Length);
                                         forAnsw = forAnsw.Insert(j, $"({m + a * mnoj[i]}-{a}*{mnoj[i]})");
                                     }
-                                    j = j1;
+                                    int leng = $"({m + a * mnoj[i]}-{a}*{mnoj[i]})".Length - num.Length;
+                                    j += leng - 1;
                                 }
                             }
                             lamp = true;
@@ -324,7 +326,7 @@ namespace Nadejda2
                         inverse %= m1;
                     }
                     //inverse = (long)Math.Pow(a, GetEulerFunc(m).GetValue() - 1) % m;
-                    sb.AppendLine($"Группируем, коэффициент перед {a} равен {inverse}");
+                    sb.AppendLine($"Группируем, коэффициент перед {a1} равен {inverse}");
                 }
             }
             public string GetSolution()
@@ -376,18 +378,19 @@ namespace Nadejda2
                         {
                             if (count == 0)
                             {
-                                sb.Append($"*fE({nums[i]})={nums[i]-1}");
+                                sb.AppendLine($"*fE({nums[i]})={nums[i]-1}");
                                 result *= nums[i] - 1;
                             }
                             else
                             {
                                 count++;
-                                sb.Append($"*fE({nums[i]}^{count})={Math.Pow(nums[i], count)}-{Math.Pow(nums[i], count - 1)}={Math.Pow(nums[i], count)- Math.Pow(nums[i], count-1)}");
+                                sb.AppendLine($"*fE({nums[i]}^{count})={Math.Pow(nums[i], count)}-{Math.Pow(nums[i], count - 1)}={Math.Pow(nums[i], count)- Math.Pow(nums[i], count-1)}");
                                 result *= (long)(Math.Pow(nums[i], count) - Math.Pow(nums[i], count - 1));
                                 count = 0;
                             }
                         }
                     }
+                    sb.Append($"={result}");
                 }
             }
             public string GetSolution()
