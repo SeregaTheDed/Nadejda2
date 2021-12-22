@@ -564,5 +564,77 @@ namespace Nadejda2
             return new Comparison(a, b, m);
         }
         #endregion
+        #region Вычисление порядка элемента в кольце
+        public class ElOrder:ISolutable
+        {
+            public long element;
+            public long mod;
+            private StringBuilder sb = new StringBuilder();
+            private long order;
+
+            public ElOrder(long el, long mod)
+            {
+                element = el;
+                this.mod = mod;
+                Solution();
+            }
+
+            private void Solution()
+            {
+                if (GetNod(element,mod).GetValue()!=1)
+                {
+                    sb.AppendLine($"{element} и {mod} не взаимно простые, значит {element} не элемент мультипликативной группы обратимых элементов кольца");
+                }
+                else
+                {
+                    order = 0;
+                    EulerFunc eulerMod = GetEulerFunc(mod);
+                    sb.AppendLine(eulerMod.GetSolution());
+                    sb.AppendLine("По теореме Лагранжа порядок группы делится на порядок любого элемента");
+                    sb.AppendLine(GetMultipliersOfNumber(eulerMod.GetValue()).GetSolution());
+                    for (int i = 1; i <= eulerMod.GetValue() / 2; i++)
+                    {
+                        if (eulerMod.GetValue() % i == 0)
+                        {
+                            var mulOfI = GetMultipliersOfNumber(i).GetList();
+                            sb.Append($"{element}^{i}={element}^{String.Join("^", mulOfI)}");
+                            if (i == 1)
+                                sb.Remove(sb.Length - 1, 1);
+                            long el1 = element;
+                            for (int j = 1; j < i;j++)
+                            {
+                                el1 *= element;
+                                el1 %= mod;
+                            }
+                            sb.AppendLine($"={el1}(mod {mod})");
+                            if (el1 == 1)
+                            {
+                                sb.Append($"Значит порядок {element} в кольце Z{mod} равен {i}");
+                                order = i;
+                                break;
+                            }
+                        }
+                    }
+                    if (order == 0)
+                    {
+                        sb.AppendLine($"По теореме Эйлера {element}^fE({mod})=1(mod {mod}) => порядок равен {eulerMod.GetValue()}");
+                        order = eulerMod.GetValue();
+                    }
+                }
+            }
+            public string GetSolution()
+            {
+                return sb.ToString();
+            }
+            public long GetValue()
+            {
+                return order;
+            }
+        }
+        public static ElOrder GetElOrder(long element, long mod)
+        {
+            return new ElOrder(element, mod);
+        }
+        #endregion
     }
 }
