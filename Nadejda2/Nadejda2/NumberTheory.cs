@@ -281,11 +281,13 @@ namespace Nadejda2
                                     }
                                     if (num == a.ToString())
                                     {
-                                        forAnsw=forAnsw.Remove(j, num.Length);
+                                        forAnsw = forAnsw.Remove(j, num.Length);
                                         forAnsw = forAnsw.Insert(j, $"({a + m * mnoj[i]}-{m}*{mnoj[i]})");
+                                        int leng = $"({m + a * mnoj[i]}-{a}*{mnoj[i]})".Length - num.Length;
+                                        j += leng - 1;
                                     }
-                                    int leng = $"({m + a * mnoj[i]}-{a}*{mnoj[i]})".Length - num.Length;
-                                    j += leng - 1;
+                                    else
+                                        j = j1;
                                 }
                             }
                             lamp = false;
@@ -308,9 +310,11 @@ namespace Nadejda2
                                     {
                                         forAnsw = forAnsw.Remove(j, num.Length);
                                         forAnsw = forAnsw.Insert(j, $"({m + a * mnoj[i]}-{a}*{mnoj[i]})");
+                                        int leng = $"({m + a * mnoj[i]}-{a}*{mnoj[i]})".Length - num.Length;
+                                        j += leng - 1;
                                     }
-                                    int leng = $"({m + a * mnoj[i]}-{a}*{mnoj[i]})".Length - num.Length;
-                                    j += leng - 1;
+                                    else
+                                        j = j1;
                                 }
                             }
                             lamp = true;
