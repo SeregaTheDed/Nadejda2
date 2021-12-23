@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Nadejda2.Pages.ElOrder">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#F0F785">
+            <Frame BackgroundColor="#9790FC" CornerRadius="50" Margin="20">
+                <Label VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="20" FontAttributes="Bold" Text="Введите порядок числа a и кольцо b!"/>
+            </Frame>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Entry x:Name="number_a" Grid.Row="0"  Margin="20,0,0,0" Grid.Column="0" Placeholder="Порядок числа a" WidthRequest="170" HorizontalOptions="Start" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Keyboard="Numeric"/>
+                <Entry x:Name="number_b" Grid.Row="0"  Margin="0,0,20,0" Grid.Column="1" Placeholder="Кольцо b" WidthRequest="170" HorizontalOptions="Start" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Keyboard="Numeric"/>
+                <Label Text="С подробным решением" Grid.Row="1" Grid.Column="0" Margin="20,0,0,0" FontSize="20"  VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                <Switch x:Name="sw" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center"/>
+                <Button Grid.Row="2" Grid.ColumnSpan="2" Clicked="Button_Clicked_Calculate" Text="Посчитать" FontAttributes="Italic, Bold" HeightRequest="60" WidthRequest="200" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="#6D76F0" CornerRadius="30"/>
+            </Grid>
+            <ScrollView>
+                <Frame x:Name="FrameResult" Margin="10,20,10,10" IsVisible="false" Grid.Row="3" Grid.ColumnSpan="2" BackgroundColor="#7DF785" CornerRadius="40" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Label x:Name="result" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="20" />
+                </Frame>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
