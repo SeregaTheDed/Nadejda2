@@ -174,21 +174,37 @@ namespace TestMethods
             var num = NumberTheory.GetComparison(420, 462, 511).GetList()[1];
             Assert.AreEqual(96, num);
         }
-        [TestClass]
-        public class TestElOrder
+    }
+    [TestClass]
+    public class TestElOrder
+    {
+        [TestMethod]
+        public void SomeValues()
         {
-            [TestMethod]
-            public void SomeValues()
-            {
-                var num = NumberTheory.GetElOrder(7,25).GetValue();
-                Assert.AreEqual(4, num);
-            }
-            [TestMethod]
-            public void SomeValues1()
-            {
-                var num = NumberTheory.GetElOrder(5, 73).GetValue();
-                Assert.AreEqual(72, num);
-            }
+            var num = NumberTheory.GetElOrder(7, 25).GetValue();
+            Assert.AreEqual(4, num);
+        }
+        [TestMethod]
+        public void SomeValues1()
+        {
+            var num = NumberTheory.GetElOrder(5, 73).GetValue();
+            Assert.AreEqual(72, num);
+        }
+    }
+    [TestClass]
+    public class TestChineseTheory
+    {
+        [TestMethod]
+        public void SomeValues()
+        {
+            var num = NumberTheory.GetSystemSolution(3, new long[,] { { 5, 7 }, { 3, 11 }, { 10, 13 } }).GetValue();
+            Assert.AreEqual(894, num);
+        }
+        [TestMethod]
+        public void SomeValues1()
+        {
+            var num = NumberTheory.GetSystemSolution(3, new long[,] { { 1, 2 }, { 2, 3 }, { 6, 7 } }).GetValue();
+            Assert.AreEqual(41, num);
         }
     }
 }

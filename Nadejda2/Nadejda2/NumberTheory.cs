@@ -640,5 +640,76 @@ namespace Nadejda2
             return new ElOrder(element, mod);
         }
         #endregion
+        #region Корейская теорема Пифагора
+        public class SystemSolutionByChinese: ISolutable
+        {
+            public static long n;
+            public long[,] system = new long[n, 2];
+            private long result;
+            private StringBuilder sb = new StringBuilder();
+
+            public SystemSolutionByChinese(long count, long[,] matr)
+            {
+                n = count;
+                system = matr;
+                Solution();
+            }
+            private void Solution()
+            {
+                bool prov=true;
+                for (int i = 0; i < n - 1; i++)
+                {
+                    if (GetNod(system[i, 1], system[i+1, 1]).GetValue()!=1)
+                    {
+                        sb.Append($"Модули {system[i, 1]} и {system[i+1, 1]} не взаимно простые=>китайская теорема об остатках не применима");
+                        prov = false;
+                        break;
+                    }
+                }
+                if (prov)
+                {
+                    long resultMod = 1;
+                    sb.Append($"Итоговый модуль: {system[0, 1]}");
+                    resultMod = system[0, 1];
+                    for (int i = 1; i < n; i++)
+                    {
+                        sb.Append($"*{system[i, 1]}");
+                        resultMod *= system[i, 1];
+                    }
+                    sb.Append($"={resultMod}");
+                    sb.AppendLine();
+                    sb.AppendLine($"Решением будет являться сумма Mi*(Mi)^(-1)*ci(mod {resultMod}),где Mi={resultMod}/модуль iго сравнения");
+                    StringBuilder sb2 = new StringBuilder();
+                    for (int i = 0; i < n; i++)
+                    {
+                        long Mbig = resultMod / system[i, 1];
+                        InverseEl inverse = GetInverse(Mbig, system[i, 1]);
+                        long promej = Mbig * inverse.GetValue() * system[i, 0];
+                        result += promej;
+                        sb.Append(inverse.GetSolution());
+                        sb.Append($"{Mbig}^(-1)={inverse.GetValue()}, ");
+                        sb.AppendLine($"{i} произведение суммы: {resultMod/system[i, 1]} * {inverse.GetValue()} * {system[i, 0]}={promej}");
+                        sb2.Append($"+{promej}");
+                    }
+                    sb2.Remove(0,1);
+                    result %= resultMod;
+                    sb.AppendLine($"x={sb2}={result}(mod {resultMod})");
+                }
+            }
+
+            public long GetValue()
+            {
+                return result;
+            }
+            public string GetSolution()
+            {
+                return sb.ToString();
+            }
+        }
+        public static SystemSolutionByChinese GetSystemSolution(long n,long[,] matr)
+        {
+            return new SystemSolutionByChinese(n,matr);
+        }
+        #endregion
     }
 }
