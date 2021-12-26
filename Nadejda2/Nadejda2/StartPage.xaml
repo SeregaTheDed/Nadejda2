@@ -39,7 +39,7 @@
                 <Button Grid.Row="2" Grid.Column="0" Clicked="Button_Clicked_LegendreSymbol" Text="Символ Лежандра" Margin="10,0,0,0" Style="{StaticResource buttonStyle}" />
                 <Button Grid.Row="2" Grid.Column="1" Clicked="Button_Clicked_LessDegree" Text="Сокращение степени в кольце" Margin="0,0,10,0" Style="{StaticResource buttonStyle}" />
                 <Button Grid.Row="3" Grid.Column="0" Clicked="Button_Clicked_ComporasionFirstStage" Text="Сравнение первой степени" Margin="10,0,0,0" Style="{StaticResource buttonStyle}" />
-                <Button Grid.Row="3" Grid.Column="1" Clicked="Button_Clicked_ElOrder" Text="Вычисление порядка элемента в кольце" Margin="0,0,10,0" Style="{StaticResource buttonStyle}" />
+                <Button Grid.Row="3" Grid.Column="1" Clicked="Button_Clicked_ElOrder" Text="Порядок элемента в кольце" Margin="0,0,10,0" Style="{StaticResource buttonStyle}" />
             </Grid>
         </StackLayout>
     </ContentPage.Content>
